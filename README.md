@@ -5,6 +5,12 @@ Phrases app
 
 With Docker Compose (Recommended)
 
+Build the Docker Images
+```bash
+docker compose build
+```
+
+Run the Docker Containers
 ```bash
 docker compose up
 ```
