@@ -21,6 +21,16 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
+
 export default function Home() {
   const NavMenu = (
     <NavigationMenu>
@@ -58,11 +68,32 @@ export default function Home() {
     </Card>
   );
 
+  const MyPagination = (
+    <Pagination>
+      <PaginationContent>
+        <PaginationItem>
+          <PaginationPrevious href="#" />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href="#">1</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationEllipsis />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationNext href="#" />
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination>
+  );
+
   return (
     <main>
       {NavMenu}
-      
+
       {Cards}
+
+      {MyPagination}
     </main>
   );
 }
