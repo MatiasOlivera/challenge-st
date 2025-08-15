@@ -1,10 +1,36 @@
-import React from 'react';
+import React from "react";
+
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuIndicator,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  NavigationMenuViewport,
+} from "@/components/ui/navigation-menu";
 
 export default function Home() {
-  return (
-    <main>
-      <h1>Welcome to Next.js!</h1>
-      <p>This is your default App page.</p>
-    </main>
+  const NavMenu = (
+    <NavigationMenu>
+      <NavigationMenuList>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Cards</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <NavigationMenuLink href="/">Home page</NavigationMenuLink>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>More options</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <NavigationMenuLink href="/">Option 1</NavigationMenuLink>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+      </NavigationMenuList>
+    </NavigationMenu>
   );
+
+  return <main>{NavMenu}</main>;
 }
