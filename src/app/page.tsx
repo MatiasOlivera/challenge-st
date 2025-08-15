@@ -52,6 +52,17 @@ export default function Home() {
     </NavigationMenu>
   );
 
+  const Title = (
+    <div className="text-center space-y-2">
+      <h1 className="scroll-m-20 text-center text-4xl font-extrabold tracking-tight text-balance">
+        Tus frases 📑
+      </h1>
+      <p className="text-muted-foreground">
+        Colecciona y busca tus frases favoritas
+      </p>
+    </div>
+  );
+
   const Cards = (
     <Card>
       <CardHeader>
@@ -93,10 +104,11 @@ export default function Home() {
 
       <div className="min-h-screen bg-background p-6">
         <div className="max-w-6xl mx-auto space-y-8">
+          {Title}
 
-      {Cards}
+          {Cards}
 
-      {MyPagination}
+          {MyPagination}
         </div>
       </div>
     </main>
