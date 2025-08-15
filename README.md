@@ -3,6 +3,14 @@ Phrases app
 
 ## How to run
 
+With Docker Compose (Recommended)
+
+```bash
+docker compose up
+```
+
+With Docker
+
 Build the Docker Image
 ```bash
 docker build -t challenge-st .
