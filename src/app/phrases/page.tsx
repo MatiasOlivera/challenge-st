@@ -1,15 +1,6 @@
 import React from "react";
 
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuIndicator,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  NavigationMenuViewport,
-} from "@/components/ui/navigation-menu";
+import { Button } from "@/components/ui/button";
 
 import {
   Card,
@@ -30,6 +21,8 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+
+import { CreatePhraseForm } from "@/components/create-phrase-form";
 
 export default function Home() {
   const Title = (
@@ -83,6 +76,10 @@ export default function Home() {
       <div className="min-h-screen bg-background p-6">
         <div className="max-w-6xl mx-auto space-y-8">
           {Title}
+
+          <div className="max-w-md mx-auto">
+            <CreatePhraseForm />
+          </div>
 
           {Cards}
 

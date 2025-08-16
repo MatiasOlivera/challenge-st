@@ -16,12 +16,12 @@ async function handleSubmit(formData: FormData) {
   redirect("/");
 }
 
-export default function CreatePhraseForm() {
+export function CreatePhraseForm() {
   return (
     <form action={handleSubmit} className="grid w-full gap-3">
       <Label htmlFor="phrase">Frase</Label>
       <Textarea placeholder="En qué estas pensando?" id="phrase" />
-      <Button>Crear</Button>
+      <Button>Crear frase</Button>
     </form>
   );
 }
