@@ -16,13 +16,7 @@ async function handleSubmit(formData: FormData) {
   redirect("/");
 }
 
-interface EditCardProps {
-  params: {
-    phraseId: string;
-  };
-}
-
-export default function EditCard({ params }: EditCardProps) {
+export default function CreatePhraseForm() {
   return (
     <form action={handleSubmit} className="grid w-full gap-3">
       <Label htmlFor="phrase">Frase</Label>
