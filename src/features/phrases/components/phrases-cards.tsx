@@ -10,8 +10,8 @@ import {
 
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { usePhrasesList } from "@/lib/phrases-hooks";
-import { Phrase } from "@/types/phrases";
+import { usePhrasesList } from "../hooks/phrases-hooks";
+import { Phrase } from "../types/phrases";
 
 interface PhraseCardProps {
   phrase: Phrase;

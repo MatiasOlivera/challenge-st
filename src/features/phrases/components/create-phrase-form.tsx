@@ -4,7 +4,7 @@ import React from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { usePhraseForm } from "@/lib/phrases-hooks";
+import { usePhraseForm } from "../hooks/phrases-hooks";
 
 interface CreatePhraseFormProps {
   onSubmit: (content: string) => void;

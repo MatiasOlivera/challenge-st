@@ -1,4 +1,4 @@
-import { PhrasesProvider } from "@/lib/phrases-context";
+import { PhrasesProvider } from "@/features/phrases";
 
 export default function PhraseLayout({
   children,

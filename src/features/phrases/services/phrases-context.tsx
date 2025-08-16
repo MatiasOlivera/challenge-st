@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useReducer, ReactNode } from "react";
-import { Phrase } from "@/types/phrases";
+import { Phrase } from "../types/phrases";
 import { phrasesService } from "./phrases-service";
 
 interface PhrasesState {
@@ -106,9 +106,7 @@ export const PhrasesProvider: React.FC<PhrasesProviderProps> = ({
       dispatch({
         type: "SET_ERROR",
         payload:
-          error instanceof Error
-            ? error.message
-            : "No se pudo eliminar la frase",
+          error instanceof Error ? error.message : "No se pudo eliminar la frase",
       });
     } finally {
       dispatch({ type: "SET_LOADING", payload: false });
