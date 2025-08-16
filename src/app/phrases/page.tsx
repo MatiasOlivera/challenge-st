@@ -10,8 +10,8 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 
-import { CreatePhraseForm } from "@/components/create-phrase-form";
-import { PhrasesCards, PhrasesCardsFallback } from "@/components/phrases-cards";
+import { CreatePhraseFormContainer } from "@/components/create-phrase-form";
+import { PhrasesCardsContainer, PhrasesCardsFallback } from "@/components/phrases-cards";
 
 export default function Home() {
   const Title = (
@@ -51,11 +51,11 @@ export default function Home() {
           {Title}
 
           <div className="max-w-md mx-auto">
-            <CreatePhraseForm />
+            <CreatePhraseFormContainer />
           </div>
 
           <Suspense fallback={<PhrasesCardsFallback />}>
-            <PhrasesCards />
+            <PhrasesCardsContainer />
           </Suspense>
 
           {MyPagination}
