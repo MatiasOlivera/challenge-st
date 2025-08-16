@@ -1,57 +1,9 @@
 import React from "react";
+import Link from "next/link";
 
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuIndicator,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  NavigationMenuViewport,
-} from "@/components/ui/navigation-menu";
-
-import {
-  Card,
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
-  const NavMenu = (
-    <NavigationMenu>
-      <NavigationMenuList>
-        <NavigationMenuItem>
-          <NavigationMenuTrigger>Cards</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <NavigationMenuLink href="/">Home page</NavigationMenuLink>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-
-        <NavigationMenuItem>
-          <NavigationMenuTrigger>More options</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <NavigationMenuLink href="/">Option 1</NavigationMenuLink>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-      </NavigationMenuList>
-    </NavigationMenu>
-  );
-
   const Title = (
     <div className="text-center space-y-2">
       <h1 className="scroll-m-20 text-center text-4xl font-extrabold tracking-tight text-balance">
@@ -63,52 +15,17 @@ export default function Home() {
     </div>
   );
 
-  const Cards = (
-    <Card>
-      <CardHeader>
-        <CardTitle>Card Title</CardTitle>
-        <CardDescription>Card Description</CardDescription>
-        <CardAction>Card Action</CardAction>
-      </CardHeader>
-      <CardContent>
-        <p>Card Content</p>
-      </CardContent>
-      <CardFooter>
-        <p>Card Footer</p>
-      </CardFooter>
-    </Card>
-  );
-
-  const MyPagination = (
-    <Pagination>
-      <PaginationContent>
-        <PaginationItem>
-          <PaginationPrevious href="#" />
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#">1</PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationEllipsis />
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationNext href="#" />
-        </PaginationItem>
-      </PaginationContent>
-    </Pagination>
-  );
-
   return (
     <main>
-      {NavMenu}
-
       <div className="min-h-screen bg-background p-6">
         <div className="max-w-6xl mx-auto space-y-8">
           {Title}
 
-          {Cards}
-
-          {MyPagination}
+          <div className="flex justify-center">
+            <Button variant="outline">
+              <Link href="/phrases">Ir a frases</Link>
+            </Button>
+          </div>
         </div>
       </div>
     </main>

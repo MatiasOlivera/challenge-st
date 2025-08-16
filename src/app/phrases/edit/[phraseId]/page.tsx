@@ -18,7 +18,7 @@ async function handleSubmit(formData: FormData) {
 
 interface EditCardProps {
   params: {
-    cardId: string;
+    phraseId: string;
   };
 }
 
