@@ -10,7 +10,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 
-import { CreatePhraseFormContainer, PhrasesCardsContainer, PhrasesCardsFallback } from "@/features/phrases";
+import { CreatePhraseFormContainer, PhrasesCardsContainer, PhrasesCardsFallback, PhrasesProvider } from "@/features/phrases";
 
 const Home: React.FC = () => {
   const Title = (
@@ -44,23 +44,25 @@ const Home: React.FC = () => {
   );
 
   return (
-    <main>
-      <div className="min-h-screen bg-background p-6">
-        <div className="max-w-6xl mx-auto space-y-8">
-          {Title}
+    <PhrasesProvider>
+      <main>
+        <div className="min-h-screen bg-background p-6">
+          <div className="max-w-6xl mx-auto space-y-8">
+            {Title}
 
-          <div className="max-w-md mx-auto">
-            <CreatePhraseFormContainer />
+            <div className="max-w-md mx-auto">
+              <CreatePhraseFormContainer />
+            </div>
+
+            <Suspense fallback={<PhrasesCardsFallback />}>
+              <PhrasesCardsContainer />
+            </Suspense>
+
+            {MyPagination}
           </div>
-
-          <Suspense fallback={<PhrasesCardsFallback />}>
-            <PhrasesCardsContainer />
-          </Suspense>
-
-          {MyPagination}
         </div>
-      </div>
-    </main>
+      </main>
+    </PhrasesProvider>
   );
 };
 

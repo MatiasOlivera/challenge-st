@@ -57,8 +57,16 @@ export class PhrasesService {
     return this.findPhraseById(id);
   }
 
-  getAllPhrases(): Phrase[] {
-    return [...this.phrases];
+  getPhrases(searchTerm: string = ""): Phrase[] {
+    const _phrases = [...this.phrases];
+
+    if (!searchTerm.trim()) {
+      return _phrases;
+    }
+
+    return _phrases.filter((phrase) =>
+      phrase.content.toLowerCase().includes(searchTerm.toLowerCase())
+    );
   }
 
   // Utility methods
@@ -81,7 +89,7 @@ export class PhrasesService {
   // State management
   getState(): PhrasesServiceState {
     return {
-      phrases: this.getAllPhrases(),
+      phrases: this.getPhrases(),
     };
   }
 

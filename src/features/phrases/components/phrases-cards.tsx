@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useMemo } from "react";
 import {
   Card,
   CardAction,
@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { usePhrasesList } from "../hooks/phrases-hooks";
 import { Phrase } from "../types/phrases";
+import { PhrasesSearch } from "./phrases-search";
 
 interface PhraseCardProps {
   phrase: Phrase;
@@ -19,10 +20,10 @@ interface PhraseCardProps {
   isLoading?: boolean;
 }
 
-export const PhraseCard: React.FC<PhraseCardProps> = ({ 
-  phrase, 
-  onDelete, 
-  isLoading 
+export const PhraseCard: React.FC<PhraseCardProps> = ({
+  phrase,
+  onDelete,
+  isLoading,
 }) => {
   return (
     <Card>
@@ -31,8 +32,8 @@ export const PhraseCard: React.FC<PhraseCardProps> = ({
       </CardContent>
       <CardFooter>
         <CardAction>
-          <Button 
-            variant="secondary" 
+          <Button
+            variant="secondary"
             onClick={() => onDelete(phrase.id)}
             disabled={isLoading}
           >
@@ -48,17 +49,23 @@ interface PhrasesCardsProps {
   phrases: Phrase[];
   onDelete: (id: string) => void;
   isLoading?: boolean;
+  searchTerm?: string;
 }
 
-export const PhrasesCards: React.FC<PhrasesCardsProps> = ({ 
-  phrases, 
-  onDelete, 
-  isLoading 
+export const PhrasesCards: React.FC<PhrasesCardsProps> = ({
+  phrases,
+  onDelete,
+  isLoading,
+  searchTerm,
 }) => {
   if (phrases.length === 0) {
     return (
       <div className="text-center py-8">
-        <p className="text-muted-foreground">No hay frases aún. ¡Crea la primera!</p>
+        <p className="text-muted-foreground">
+          {searchTerm
+            ? `No se encontraron frases que coincidan con "${searchTerm}"`
+            : "No hay frases aún. ¡Crea la primera!"}
+        </p>
       </div>
     );
   }
@@ -94,13 +101,23 @@ export const PhrasesCardsFallback: React.FC = () => {
 };
 
 export const PhrasesCardsContainer: React.FC = () => {
-  const { phrases, loading, deletePhrase } = usePhrasesList();
+  const { phrases, loading, deletePhrase, getPhrases } = usePhrasesList();
+  const [searchTerm, setSearchTerm] = React.useState("");
+
+  const filteredPhrases = useMemo(() => getPhrases(searchTerm), [phrases, searchTerm]);
 
   return (
-    <PhrasesCards
-      phrases={phrases}
-      onDelete={deletePhrase}
-      isLoading={loading}
-    />
+    <div className="space-y-6">
+      <div className="max-w-md">
+        <PhrasesSearch onSearchChange={setSearchTerm} />
+      </div>
+
+      <PhrasesCards
+        phrases={filteredPhrases}
+        onDelete={deletePhrase}
+        isLoading={loading}
+        searchTerm={searchTerm}
+      />
+    </div>
   );
 };

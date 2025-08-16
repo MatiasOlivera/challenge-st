@@ -23,12 +23,13 @@ export function usePhraseForm() {
 }
 
 export function usePhrasesList() {
-  const { state, deletePhrase } = usePhrases();
+  const { state, deletePhrase, getPhrases } = usePhrases();
   
   return {
     phrases: state.phrases,
     loading: state.loading,
     deletePhrase,
+    getPhrases
   };
 }
 

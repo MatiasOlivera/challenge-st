@@ -22,7 +22,7 @@ export interface PhrasesContextType {
   state: PhrasesState;
   createPhrase: (content: string) => void;
   deletePhrase: (id: string) => void;
-  getPhrases: () => Phrase[];
+  getPhrases: (searchTerm: string) => Phrase[];
   getPhraseById: (id: string) => Phrase | undefined;
 }
 
@@ -113,8 +113,8 @@ export const PhrasesProvider: React.FC<PhrasesProviderProps> = ({
     }
   };
 
-  const getPhrases = (): Phrase[] => {
-    return phrasesService.getAllPhrases();
+  const getPhrases = (searchTerm = ""): Phrase[] => {
+    return phrasesService.getPhrases(searchTerm);
   };
 
   const getPhraseById = (id: string): Phrase | undefined => {
