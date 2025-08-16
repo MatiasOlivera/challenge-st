@@ -8,7 +8,7 @@ services:
       - node_modules:/app/src/node_modules
       - ./tmp:/tmp
     working_dir: /app/src
-    command: pnpm dev
+    command: sh -c "pnpm install && pnpm dev"
 
 volumes:
   node_modules: {}
