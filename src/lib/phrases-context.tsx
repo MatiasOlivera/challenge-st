@@ -89,7 +89,7 @@ export const PhrasesProvider: React.FC<PhrasesProviderProps> = ({
       dispatch({
         type: "SET_ERROR",
         payload:
-          error instanceof Error ? error.message : "Failed to create phrase",
+          error instanceof Error ? error.message : "No se pudo crear la frase",
       });
     } finally {
       dispatch({ type: "SET_LOADING", payload: false });
@@ -106,7 +106,9 @@ export const PhrasesProvider: React.FC<PhrasesProviderProps> = ({
       dispatch({
         type: "SET_ERROR",
         payload:
-          error instanceof Error ? error.message : "Failed to delete phrase",
+          error instanceof Error
+            ? error.message
+            : "No se pudo eliminar la frase",
       });
     } finally {
       dispatch({ type: "SET_LOADING", payload: false });

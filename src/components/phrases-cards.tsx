@@ -13,15 +13,11 @@ import { usePhrases } from "@/lib/phrases-context";
 
 export function PhrasesCards() {
   const {
-    state: { phrases, loading, error },
+    state: { phrases, loading },
   } = usePhrases();
 
   if (loading) {
     return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
   }
 
   return (

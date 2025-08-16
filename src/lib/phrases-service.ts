@@ -10,7 +10,7 @@ export class PhrasesService {
   // Validation methods
   private validateContent(content: string): void {
     if (!content.trim()) {
-      throw new Error("Phrase content cannot be empty");
+      throw new Error("Debes escribir una frase");
     }
   }
 
@@ -22,7 +22,7 @@ export class PhrasesService {
     );
 
     if (isDuplicate) {
-      throw new Error("A phrase with this content already exists");
+      throw new Error("Ya existe una frase igual");
     }
   }
 
@@ -47,7 +47,7 @@ export class PhrasesService {
   deletePhrase(id: string): void {
     const existingPhrase = this.findPhraseById(id);
     if (!existingPhrase) {
-      throw new Error("Phrase not found");
+      throw new Error("Frase no encontrada");
     }
 
     this.phrases = this.phrases.filter((phrase) => phrase.id !== id);
