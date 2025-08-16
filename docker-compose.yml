@@ -5,6 +5,6 @@ services:
       - "3000:3000"
     volumes:
       - ./src:/app/src
-      - /app/src/node_modules
+      - ./tmp:/tmp
     working_dir: /app/src
     command: sh -c "pnpm install && pnpm dev"
