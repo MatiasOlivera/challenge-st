@@ -1,5 +1,7 @@
 import "./globals.css";
 
+import type { Metadata, Viewport } from "next";
+
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -11,9 +13,22 @@ import {
   NavigationMenuViewport,
 } from "@/components/ui/navigation-menu";
 
-export const metadata = {
-  title: "Frases",
+export const metadata: Metadata = {
+  title: {
+    default: "Frases",
+    template: "%s | Frases",
+  },
   description: "Colecciona y busca tus frases favoritas",
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "white" },
+    { media: "(prefers-color-scheme: dark)", color: "black" },
+  ],
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
 };
 
 export default function RootLayout({
@@ -40,7 +55,6 @@ export default function RootLayout({
       </NavigationMenuList>
     </NavigationMenu>
   );
-
   return (
     <html lang="en">
       <body>
