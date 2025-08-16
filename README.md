@@ -15,6 +15,13 @@ Run the Docker Containers
 docker compose up
 ```
 
+Run automated testing
+
+```bash
+docker compose exec app sh
+pnpm test
+```
+
 With Docker
 
 Build the Docker Image
