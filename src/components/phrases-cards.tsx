@@ -14,6 +14,7 @@ import { usePhrases } from "@/lib/phrases-context";
 export function PhrasesCards() {
   const {
     state: { phrases, loading },
+    deletePhrase,
   } = usePhrases();
 
   if (loading) {
@@ -29,7 +30,9 @@ export function PhrasesCards() {
           </CardContent>
           <CardFooter>
             <CardAction>
-              <Button variant="secondary">Eliminar</Button>
+              <Button variant="secondary" onClick={() => deletePhrase(phrase.id)}>
+                Eliminar
+              </Button>
             </CardAction>
           </CardFooter>
         </Card>
