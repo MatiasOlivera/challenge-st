@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import {
   Card,
   CardAction,
@@ -18,7 +19,11 @@ interface PhraseCardProps {
   isLoading?: boolean;
 }
 
-export function PhraseCard({ phrase, onDelete, isLoading }: PhraseCardProps) {
+export const PhraseCard: React.FC<PhraseCardProps> = ({ 
+  phrase, 
+  onDelete, 
+  isLoading 
+}) => {
   return (
     <Card>
       <CardContent>
@@ -31,14 +36,13 @@ export function PhraseCard({ phrase, onDelete, isLoading }: PhraseCardProps) {
             onClick={() => onDelete(phrase.id)}
             disabled={isLoading}
           >
-
             {isLoading ? "Eliminando..." : "Eliminar"}
           </Button>
         </CardAction>
       </CardFooter>
     </Card>
   );
-}
+};
 
 interface PhrasesCardsProps {
   phrases: Phrase[];
@@ -46,7 +50,11 @@ interface PhrasesCardsProps {
   isLoading?: boolean;
 }
 
-export function PhrasesCards({ phrases, onDelete, isLoading }: PhrasesCardsProps) {
+export const PhrasesCards: React.FC<PhrasesCardsProps> = ({ 
+  phrases, 
+  onDelete, 
+  isLoading 
+}) => {
   if (phrases.length === 0) {
     return (
       <div className="text-center py-8">
@@ -67,9 +75,9 @@ export function PhrasesCards({ phrases, onDelete, isLoading }: PhrasesCardsProps
       ))}
     </div>
   );
-}
+};
 
-export function PhrasesCardsFallback() {
+export const PhrasesCardsFallback: React.FC = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {Array.from({ length: 6 }).map((_, i) => (
@@ -83,9 +91,9 @@ export function PhrasesCardsFallback() {
       ))}
     </div>
   );
-}
+};
 
-export function PhrasesCardsContainer() {
+export const PhrasesCardsContainer: React.FC = () => {
   const { phrases, loading, deletePhrase } = usePhrasesList();
 
   return (
@@ -95,4 +103,4 @@ export function PhrasesCardsContainer() {
       isLoading={loading}
     />
   );
-}
+};

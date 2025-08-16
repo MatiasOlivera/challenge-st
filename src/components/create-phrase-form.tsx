@@ -1,12 +1,23 @@
 "use client";
 
+import React from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { usePhraseForm } from "@/lib/phrases-hooks";
-import { CreatePhraseFormProps } from "@/types/components";
 
-export function CreatePhraseForm({ onSubmit, error, isLoading, ...props }: CreatePhraseFormProps) {
+interface CreatePhraseFormProps {
+  onSubmit: (content: string) => void;
+  error?: string | null;
+  isLoading?: boolean;
+}
+
+export const CreatePhraseForm: React.FC<CreatePhraseFormProps> = ({ 
+  onSubmit, 
+  error, 
+  isLoading, 
+  ...props 
+}) => {
   function handleSubmit(formData: FormData) {
     const content = formData.get("content") as string;
     onSubmit(content);
@@ -27,9 +38,9 @@ export function CreatePhraseForm({ onSubmit, error, isLoading, ...props }: Creat
       </Button>
     </form>
   );
-}
+};
 
-export function CreatePhraseFormContainer() {
+export const CreatePhraseFormContainer: React.FC = () => {
   const { error, loading, createPhrase } = usePhraseForm();
 
   return (
@@ -39,4 +50,4 @@ export function CreatePhraseFormContainer() {
       isLoading={loading}
     />
   );
-}
+};

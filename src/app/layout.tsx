@@ -1,3 +1,4 @@
+import React from "react";
 import "./globals.css";
 
 import type { Metadata, Viewport } from "next";
@@ -31,11 +32,11 @@ export const viewport: Viewport = {
   maximumScale: 1,
 };
 
-export default function RootLayout({
-  children,
-}: {
+interface RootLayoutProps {
   children: React.ReactNode;
-}) {
+}
+
+const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
   const NavMenu = (
     <NavigationMenu>
       <NavigationMenuList>
@@ -55,13 +56,21 @@ export default function RootLayout({
       </NavigationMenuList>
     </NavigationMenu>
   );
-  return (
-    <html lang="en">
-      <body>
-        {NavMenu}
 
-        {children}
+  return (
+    <html lang="es" suppressHydrationWarning>
+      <body className="antialiased">
+        <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+          <div className="container flex h-14 items-center">
+            {NavMenu}
+          </div>
+        </header>
+        <main>
+          {children}
+        </main>
       </body>
     </html>
   );
-}
+};
+
+export default RootLayout;

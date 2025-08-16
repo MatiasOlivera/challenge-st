@@ -13,7 +13,7 @@ import {
 import { CreatePhraseFormContainer } from "@/components/create-phrase-form";
 import { PhrasesCardsContainer, PhrasesCardsFallback } from "@/components/phrases-cards";
 
-export default function Home() {
+const Home: React.FC = () => {
   const Title = (
     <div className="text-center space-y-2">
       <h1 className="scroll-m-20 text-center text-4xl font-extrabold tracking-tight text-balance">
@@ -63,4 +63,6 @@ export default function Home() {
       </div>
     </main>
   );
-}
+};
+
+export default Home;
