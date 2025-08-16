@@ -1,16 +1,4 @@
-import React from "react";
-
-import { Button } from "@/components/ui/button";
-
-import {
-  Card,
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import React, { Suspense } from "react";
 
 import {
   Pagination,
@@ -23,6 +11,7 @@ import {
 } from "@/components/ui/pagination";
 
 import { CreatePhraseForm } from "@/components/create-phrase-form";
+import { PhrasesCards, PhrasesCardsFallback } from "@/components/phrases-cards";
 
 export default function Home() {
   const Title = (
@@ -34,22 +23,6 @@ export default function Home() {
         Colecciona y busca tus frases favoritas
       </p>
     </div>
-  );
-
-  const Cards = (
-    <Card>
-      <CardHeader>
-        <CardTitle>Card Title</CardTitle>
-        <CardDescription>Card Description</CardDescription>
-        <CardAction>Card Action</CardAction>
-      </CardHeader>
-      <CardContent>
-        <p>Card Content</p>
-      </CardContent>
-      <CardFooter>
-        <p>Card Footer</p>
-      </CardFooter>
-    </Card>
   );
 
   const MyPagination = (
@@ -81,7 +54,9 @@ export default function Home() {
             <CreatePhraseForm />
           </div>
 
-          {Cards}
+          <Suspense fallback={<PhrasesCardsFallback />}>
+            <PhrasesCards />
+          </Suspense>
 
           {MyPagination}
         </div>
