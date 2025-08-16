@@ -1,21 +1,20 @@
-# Use the latest LTS Node.js image
+# Use the Node LTS image
 FROM node:22-alpine
 
-# Set working directory
+# enable corepack and activate pnpm
+RUN corepack enable && corepack prepare pnpm@latest --activate
+
 WORKDIR /app/src
 
-# Install pnpm globally
-RUN corepack enable pnpm
+# copy package files first to leverage Docker cache
+COPY ./src/package.json ./src/pnpm-lock.yaml* ./
 
-# Copy package files and install dependencies
-COPY ./src/package.json ./
-RUN pnpm install
+# install deps at build time (use frozen lockfile if lock exists)
+RUN pnpm install --frozen-lockfile
 
-# Copy the rest of your app
-COPY ./src .
+# copy source
+COPY ./src ./
 
-# Expose port 3000 (Next.js default)
 EXPOSE 3000
 
-# Default command
-CMD ["pnpm", "dev"] 
+CMD ["pnpm", "dev"]
