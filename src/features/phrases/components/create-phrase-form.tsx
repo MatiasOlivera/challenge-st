@@ -24,7 +24,7 @@ export const CreatePhraseForm: React.FC<CreatePhraseFormProps> = ({
   }
 
   return (
-    <form action={handleSubmit} className="grid w-full gap-3" {...props}>
+    <form action={handleSubmit} className="grid w-full gap-3" name="create-phrase-form" {...props}>
       <Label htmlFor="content">Frase</Label>
       <Textarea
         placeholder="En qué estas pensando?"
