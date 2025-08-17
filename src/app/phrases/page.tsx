@@ -14,8 +14,8 @@ import { CreatePhraseFormContainer, PhrasesCardsContainer, PhrasesCardsFallback,
 
 const Home: React.FC = () => {
   const Title = (
-    <div className="text-center space-y-2">
-      <h1 className="scroll-m-20 text-center text-4xl font-extrabold tracking-tight text-balance">
+    <div className="space-y-2">
+      <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight text-balance">
         Tus frases 📑
       </h1>
       <p className="text-muted-foreground">
@@ -48,9 +48,9 @@ const Home: React.FC = () => {
       <main>
         <div className="min-h-screen bg-background p-6">
           <div className="max-w-6xl mx-auto space-y-8">
-            {Title}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+              {Title}
 
-            <div className="max-w-md mx-auto">
               <CreatePhraseFormContainer />
             </div>
 

@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <main>
       <div className="min-h-screen bg-background p-6">
-        <div className="max-w-6xl mx-auto space-y-8">
+        <div className="max-w-6xl mx-auto space-y-8 text-center">
           {Title}
 
           <div className="flex justify-center">
