@@ -80,22 +80,6 @@ export class PhrasesService {
   getPhrasesCount(): number {
     return this.phrases.length;
   }
-
-  // Bulk operations
-  clearAllPhrases(): void {
-    this.phrases = [];
-  }
-
-  // State management
-  getState(): PhrasesServiceState {
-    return {
-      phrases: this.getPhrases(),
-    };
-  }
-
-  setState(state: PhrasesServiceState): void {
-    this.phrases = state.phrases;
-  }
 }
 
 export const phrasesService = new PhrasesService();
