@@ -21,7 +21,7 @@ interface PhraseCardProps {
   isLoading?: boolean;
 }
 
-export const PhraseCard: React.FC<PhraseCardProps> = ({
+export const PhraseCard: React.FC<PhraseCardProps> = React.memo(({
   phrase,
   onDelete,
   isLoading,
@@ -47,7 +47,7 @@ export const PhraseCard: React.FC<PhraseCardProps> = ({
       </CardFooter>
     </Card>
   );
-};
+});
 
 interface PhrasesCardsProps {
   phrases: Phrase[];
@@ -56,7 +56,7 @@ interface PhrasesCardsProps {
   searchTerm?: string;
 }
 
-export const PhrasesCards: React.FC<PhrasesCardsProps> = ({
+export const PhrasesCards: React.FC<PhrasesCardsProps> = React.memo(({
   phrases,
   onDelete,
   isLoading,
@@ -90,7 +90,7 @@ export const PhrasesCards: React.FC<PhrasesCardsProps> = ({
       ))}
     </div>
   );
-};
+});
 
 export const PhrasesCardsFallback: React.FC = () => {
   return (
@@ -129,10 +129,10 @@ const PhrasesCardsContent: React.FC<{ searchTerm: string }> = ({ searchTerm }) =
   const { phrases, loading, deletePhrase, getPhrases } = usePhrasesList();
   const filteredResults = searchTerm ? use(getPhrases(searchTerm)) : phrases;
 
-  function onDelete(id: string) {
+  const onDelete = React.useCallback((id: string) => {
     deletePhrase(id);
     toast.success("Frase eliminada con éxito!");
-  }
+  }, [deletePhrase]);
 
   return (
     <PhrasesCards
