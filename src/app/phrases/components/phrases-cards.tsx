@@ -104,7 +104,7 @@ export const PhrasesCardsContainer: React.FC = () => {
   const { phrases, loading, deletePhrase, getPhrases } = usePhrasesList();
   const [searchTerm, setSearchTerm] = React.useState("");
 
-  const filteredPhrases = useMemo(() => getPhrases(searchTerm), [phrases, searchTerm]);
+  const filteredPhrases = useMemo(() => searchTerm ? getPhrases(searchTerm) : phrases, [phrases, searchTerm]);
 
   return (
     <div className="space-y-6">
