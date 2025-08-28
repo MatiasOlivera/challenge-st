@@ -1,21 +1,19 @@
-import React, { useState, useDeferredValue } from "react";
+import { useState, useEffect } from "react";
 import type { OnSearchChange } from "../types/phrases.d.ts";
 import { useDebounce } from "@/app/hooks/useDebounce";
 
 export function useSearch(onSearchChange: OnSearchChange, searchTermLength = 3): UseSearchHook {
     const [searchTerm, setSearchTerm] = useState("");
-    const deferredSearchTerm = useDeferredValue(searchTerm);
-    const debouncedSearchTerm = useDebounce(deferredSearchTerm, 300);
+    const debouncedSearchTerm = useDebounce(searchTerm, 300);
 
-    React.useEffect(() => {
-        if (debouncedSearchTerm.length >= searchTermLength) {
+    useEffect(() => {
+        if (debouncedSearchTerm.length === 0 || debouncedSearchTerm.length >= searchTermLength) {
             onSearchChange(debouncedSearchTerm);
         }
-
     }, [debouncedSearchTerm, onSearchChange]);
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchTerm(e.target.value?.trim());
+        setSearchTerm(e.target.value);
     };
 
     return { searchTerm, handleSearchChange };
