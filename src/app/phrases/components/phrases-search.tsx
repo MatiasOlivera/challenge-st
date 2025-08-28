@@ -1,12 +1,14 @@
 "use client";
 
-import React, { useState, useDeferredValue } from "react";
+import React from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Search } from "lucide-react";
+import { useSearch } from "@/hooks/use-search";
+import type { OnSearchChange } from "../types/phrases";
 
 interface PhrasesSearchProps {
-  onSearchChange: (searchTerm: string) => void;
+  onSearchChange: OnSearchChange
   placeholder?: string;
 }
 
@@ -14,16 +16,7 @@ export const PhrasesSearch: React.FC<PhrasesSearchProps> = ({
   onSearchChange,
   placeholder = "Buscar frases...",
 }) => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const deferredSearchTerm = useDeferredValue(searchTerm);
-
-  React.useEffect(() => {
-    onSearchChange(deferredSearchTerm);
-  }, [deferredSearchTerm, onSearchChange]);
-
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value);
-  };
+  const { searchTerm, handleSearchChange } = useSearch(onSearchChange);
 
   return (
     <div className="relative">
@@ -49,3 +42,5 @@ export const PhrasesSearch: React.FC<PhrasesSearchProps> = ({
     </div>
   );
 };
+
+
