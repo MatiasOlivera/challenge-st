@@ -19,7 +19,7 @@ export const CreatePhraseForm: React.FC<CreatePhraseFormProps> = ({
   ...props 
 }) => {
   function handleSubmit(formData: FormData) {
-    const content = formData.get("content") as string;
+    const content: string = formData.get("content") as string ?? "";
     onSubmit(content);
   }
 
