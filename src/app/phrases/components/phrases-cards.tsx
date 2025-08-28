@@ -28,7 +28,7 @@ export const PhraseCard: React.FC<PhraseCardProps> = ({
   return (
     <Card>
       <CardContent>
-        <p>{phrase.content}</p>
+        <p className="break-normal">{phrase.content}</p>
       </CardContent>
       <CardFooter>
         <CardAction>
