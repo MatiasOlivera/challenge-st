@@ -110,15 +110,16 @@ export const PhrasesCardsFallback: React.FC = () => {
 
 export const PhrasesCardsContainer: React.FC = () => {
   const [searchTerm, setSearchTerm] = React.useState("");
+  const trimmedSearchTerm = searchTerm.trim();
 
   return (
     <div className="space-y-6">
       <div className="max-w-md">
-        <PhrasesSearch onSearchChange={setSearchTerm} searchTermLength={SEARCH_TERM_LENGTH}/>
+        <PhrasesSearch onSearchChange={setSearchTerm} searchTermLength={SEARCH_TERM_LENGTH} />
       </div>
 
       <Suspense fallback={<PhrasesCardsFallback />}>
-        <PhrasesCardsContent searchTerm={searchTerm} />
+        <PhrasesCardsContent searchTerm={trimmedSearchTerm} />
       </Suspense>
     </div>
   );

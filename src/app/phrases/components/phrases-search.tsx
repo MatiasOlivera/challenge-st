@@ -20,6 +20,7 @@ export const PhrasesSearch: React.FC<PhrasesSearchProps> = ({
 
 }) => {
   const { searchTerm, handleSearchChange } = useSearch(onSearchChange, searchTermLength);
+  const trimmedSearchTerm = searchTerm.trim();
 
   return (
     <div className="relative" role="search">
@@ -37,7 +38,7 @@ export const PhrasesSearch: React.FC<PhrasesSearchProps> = ({
           className="pl-10"
         />
       </div>
-      {searchTerm && searchTerm.length > searchTermLength && (
+      {trimmedSearchTerm && trimmedSearchTerm.length > searchTermLength && (
         <div className="mt-2 text-sm text-muted-foreground">
           Buscando: "{searchTerm}"
         </div>
