@@ -8,7 +8,7 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "@/components/ui/pagination";
+} from "@/app/components/ui/pagination";
 
 import { CreatePhraseFormContainer, PhrasesCardsContainer, PhrasesCardsFallback, PhrasesProvider } from "@/app/phrases";
 

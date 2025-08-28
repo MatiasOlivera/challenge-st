@@ -1,10 +1,10 @@
 "use client";
 
 import React from "react";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Input } from "@/app/components/ui/input";
+import { Label } from "@/app/components/ui/label";
 import { Search } from "lucide-react";
-import { useSearch } from "@/hooks/use-search";
+import { useSearch } from "@/app/phrases/hooks/useSearch";
 import type { OnSearchChange } from "../types/phrases";
 
 interface PhrasesSearchProps {

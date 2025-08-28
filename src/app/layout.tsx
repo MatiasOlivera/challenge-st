@@ -10,7 +10,7 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu";
+} from "@/app/components/ui/navigation-menu";
 
 export const metadata: Metadata = {
   title: {

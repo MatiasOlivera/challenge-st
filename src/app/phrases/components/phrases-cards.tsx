@@ -1,15 +1,15 @@
 "use client";
 
-import React, { useMemo } from "react";
+import React, { Suspense, use } from "react";
 import {
   Card,
   CardAction,
   CardContent,
   CardFooter,
-} from "@/components/ui/card";
+} from "@/app/components/ui/card";
 
-import { Button } from "@/components/ui/button";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Button } from "@/app/components/ui/button";
+import { Skeleton } from "@/app/components/ui/skeleton";
 import { usePhrasesList } from "../hooks/phrases-hooks";
 import { Phrase } from "../types/phrases";
 import { PhrasesSearch } from "./phrases-search";
@@ -101,10 +101,7 @@ export const PhrasesCardsFallback: React.FC = () => {
 };
 
 export const PhrasesCardsContainer: React.FC = () => {
-  const { phrases, loading, deletePhrase, getPhrases } = usePhrasesList();
   const [searchTerm, setSearchTerm] = React.useState("");
-
-  const filteredPhrases = useMemo(() => searchTerm ? getPhrases(searchTerm) : phrases, [phrases, searchTerm]);
 
   return (
     <div className="space-y-6">
@@ -112,12 +109,23 @@ export const PhrasesCardsContainer: React.FC = () => {
         <PhrasesSearch onSearchChange={setSearchTerm} />
       </div>
 
-      <PhrasesCards
-        phrases={filteredPhrases}
-        onDelete={deletePhrase}
-        isLoading={loading}
-        searchTerm={searchTerm}
-      />
+      <Suspense fallback={<PhrasesCardsFallback />}>
+        <PhrasesCardsContent searchTerm={searchTerm} />
+      </Suspense>
     </div>
+  );
+};
+
+const PhrasesCardsContent: React.FC<{ searchTerm: string }> = ({ searchTerm }) => {
+  const { phrases, loading, deletePhrase, getPhrases } = usePhrasesList();
+  const filteredResults = searchTerm ? use(getPhrases(searchTerm)) : phrases;
+
+  return (
+    <PhrasesCards
+      phrases={filteredResults}
+      onDelete={deletePhrase}
+      isLoading={loading}
+      searchTerm={searchTerm}
+    />
   );
 };

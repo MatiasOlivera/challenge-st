@@ -41,10 +41,15 @@ describe('PhrasesService', () => {
         await service.createPhrase('One phrase');
         await service.createPhrase('Another phrase');
         await service.createPhrase('And the last one');
-        expect(await service.getPhrases().length).toBe(3);
 
-        expect(await service.getPhrases('a').length).toBe(3);
-        expect(await service.getPhrases('phrase').length).toBe(2);
+        const phrases1 = await service.getPhrases()
+        expect(phrases1.length).toBe(3);
+
+        const phrases2 = await service.getPhrases('a')
+        expect(phrases2.length).toBe(3);
+
+        const phrases3 = await service.getPhrases('phrase')
+        expect(phrases3.length).toBe(2);
     });
 
     test('searchPhrases based on search tem', async () => {
