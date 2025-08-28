@@ -66,7 +66,7 @@ export const PhrasesCards: React.FC<PhrasesCardsProps> = ({
     return (
       <div className="text-center py-8" role="status" aria-live="polite">
         <p className="text-muted-foreground">
-          {searchTerm
+          {searchTerm && searchTerm.length > SEARCH_TERM_LENGTH
             ? `No se encontraron frases que coincidan con "${searchTerm}"`
             : "No hay frases aún. ¡Crea la primera!"}
         </p>
@@ -114,7 +114,7 @@ export const PhrasesCardsContainer: React.FC = () => {
   return (
     <div className="space-y-6">
       <div className="max-w-md">
-        <PhrasesSearch onSearchChange={setSearchTerm} />
+        <PhrasesSearch onSearchChange={setSearchTerm} searchTermLength={SEARCH_TERM_LENGTH}/>
       </div>
 
       <Suspense fallback={<PhrasesCardsFallback />}>
@@ -142,3 +142,5 @@ const PhrasesCardsContent: React.FC<{ searchTerm: string }> = ({ searchTerm }) =
     />
   );
 };
+
+const SEARCH_TERM_LENGTH = 3;

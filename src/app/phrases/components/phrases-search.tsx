@@ -9,14 +9,17 @@ import type { OnSearchChange } from "../types/phrases";
 
 interface PhrasesSearchProps {
   onSearchChange: OnSearchChange
+  searchTermLength?: number;
   placeholder?: string;
 }
 
 export const PhrasesSearch: React.FC<PhrasesSearchProps> = ({
   onSearchChange,
+  searchTermLength = 3,
   placeholder = "Buscar frases...",
+
 }) => {
-  const { searchTerm, handleSearchChange } = useSearch(onSearchChange);
+  const { searchTerm, handleSearchChange } = useSearch(onSearchChange, searchTermLength);
 
   return (
     <div className="relative" role="search">
@@ -34,7 +37,7 @@ export const PhrasesSearch: React.FC<PhrasesSearchProps> = ({
           className="pl-10"
         />
       </div>
-      {searchTerm && (
+      {searchTerm && searchTerm.length > searchTermLength && (
         <div className="mt-2 text-sm text-muted-foreground">
           Buscando: "{searchTerm}"
         </div>
@@ -42,5 +45,4 @@ export const PhrasesSearch: React.FC<PhrasesSearchProps> = ({
     </div>
   );
 };
-
 
