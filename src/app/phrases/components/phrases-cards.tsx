@@ -25,8 +25,10 @@ export const PhraseCard: React.FC<PhraseCardProps> = ({
   onDelete,
   isLoading,
 }) => {
+  const phraseStart = (chars = 20) => `${phrase.content.substring(0, chars)}${phrase.content.length > chars ? '...' : ''}`
+
   return (
-    <Card>
+    <Card role="article">
       <CardContent>
         <p className="break-normal">{phrase.content}</p>
       </CardContent>
@@ -36,6 +38,7 @@ export const PhraseCard: React.FC<PhraseCardProps> = ({
             variant="secondary"
             onClick={() => onDelete(phrase.id)}
             disabled={isLoading}
+            aria-label={`Eliminar frase: ${phraseStart()}`}
           >
             {isLoading ? "Eliminando..." : "Eliminar"}
           </Button>
@@ -60,7 +63,7 @@ export const PhrasesCards: React.FC<PhrasesCardsProps> = ({
 }) => {
   if (phrases.length === 0) {
     return (
-      <div className="text-center py-8">
+      <div className="text-center py-8" role="status" aria-live="polite">
         <p className="text-muted-foreground">
           {searchTerm
             ? `No se encontraron frases que coincidan con "${searchTerm}"`
@@ -71,7 +74,11 @@ export const PhrasesCards: React.FC<PhrasesCardsProps> = ({
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div
+      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+      role="feed"
+      aria-label="Lista de frases"
+    >
       {phrases.map((phrase) => (
         <PhraseCard
           key={phrase.id}

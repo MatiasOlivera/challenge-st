@@ -19,12 +19,12 @@ export const PhrasesSearch: React.FC<PhrasesSearchProps> = ({
   const { searchTerm, handleSearchChange } = useSearch(onSearchChange);
 
   return (
-    <div className="relative">
+    <div className="relative" role="search">
       <Label htmlFor="search" className="sr-only">
         Buscar frases
       </Label>
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" aria-hidden="true" />
         <Input
           id="search"
           type="search"
