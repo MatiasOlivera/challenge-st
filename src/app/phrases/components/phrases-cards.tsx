@@ -1,6 +1,7 @@
 "use client";
 
 import React, { Suspense, use } from "react";
+import { toast } from "sonner"
 import {
   Card,
   CardAction,
@@ -127,10 +128,15 @@ const PhrasesCardsContent: React.FC<{ searchTerm: string }> = ({ searchTerm }) =
   const { phrases, loading, deletePhrase, getPhrases } = usePhrasesList();
   const filteredResults = searchTerm ? use(getPhrases(searchTerm)) : phrases;
 
+  function onDelete(id: string) {
+    deletePhrase(id);
+    toast.success("Frase eliminada con éxito!");
+  }
+
   return (
     <PhrasesCards
       phrases={filteredResults}
-      onDelete={deletePhrase}
+      onDelete={onDelete}
       isLoading={loading}
       searchTerm={searchTerm}
     />

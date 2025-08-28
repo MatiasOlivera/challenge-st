@@ -12,6 +12,8 @@ import {
   NavigationMenuTrigger,
 } from "@/app/components/ui/navigation-menu";
 
+import { Toaster } from "@/app/components/ui/sonner"
+
 export const metadata: Metadata = {
   title: {
     default: "Frases",
@@ -65,6 +67,8 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
         </header>
         <main>
           {children}
+
+          <Toaster />
         </main>
       </body>
     </html>

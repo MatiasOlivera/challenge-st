@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { toast } from "sonner"
 import { Textarea } from "@/app/components/ui/textarea";
 import { Label } from "@/app/components/ui/label";
 import { Button } from "@/app/components/ui/button";
@@ -12,15 +13,17 @@ interface CreatePhraseFormProps {
   isLoading?: boolean;
 }
 
-export const CreatePhraseForm: React.FC<CreatePhraseFormProps> = ({ 
-  onSubmit, 
-  error, 
-  isLoading, 
-  ...props 
+export const CreatePhraseForm: React.FC<CreatePhraseFormProps> = ({
+  onSubmit,
+  error,
+  isLoading,
+  ...props
 }) => {
   function handleSubmit(formData: FormData) {
     const content: string = formData.get("content") as string ?? "";
     onSubmit(content);
+
+    toast.success("Frase creada con éxito!");
   }
 
   return (
