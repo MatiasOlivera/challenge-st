@@ -1,18 +1,18 @@
 import React from "react";
-import "./globals.css";
+import "./styles/globals.css";
 
 import type { Metadata, Viewport } from "next";
 
 import {
   NavigationMenu,
   NavigationMenuContent,
-  NavigationMenuIndicator,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  NavigationMenuViewport,
-} from "@/components/ui/navigation-menu";
+} from "@/app/components/ui/navigation-menu";
+
+import { Toaster } from "@/app/components/ui/sonner"
 
 export const metadata: Metadata = {
   title: {
@@ -67,6 +67,8 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
         </header>
         <main>
           {children}
+
+          <Toaster />
         </main>
       </body>
     </html>

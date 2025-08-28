@@ -1,0 +1,56 @@
+"use client";
+
+import React from "react";
+import { toast } from "sonner"
+import { Textarea } from "@/app/components/ui/textarea";
+import { Label } from "@/app/components/ui/label";
+import { Button } from "@/app/components/ui/button";
+import { usePhraseForm } from "../hooks/phrases-hooks";
+
+interface CreatePhraseFormProps {
+  onSubmit: (content: string) => void;
+  error?: string | null;
+  isLoading?: boolean;
+}
+
+export const CreatePhraseForm: React.FC<CreatePhraseFormProps> = ({
+  onSubmit,
+  error,
+  isLoading,
+  ...props
+}) => {
+  function handleSubmit(formData: FormData) {
+    const content: string = formData.get("content") as string ?? "";
+    onSubmit(content);
+
+    toast.success("Frase creada con éxito!");
+  }
+
+  return (
+    <form action={handleSubmit} className="grid w-full gap-3" name="create-phrase-form" {...props}>
+      <Label htmlFor="content">Frase</Label>
+      <Textarea
+        placeholder="En qué estas pensando?"
+        id="content"
+        name="content"
+        disabled={isLoading}
+      />
+      {error && <p className="text-sm text-destructive">{error}</p>}
+      <Button disabled={isLoading}>
+        {isLoading ? "Creando..." : "Crear frase"}
+      </Button>
+    </form>
+  );
+};
+
+export const CreatePhraseFormContainer: React.FC = () => {
+  const { error, loading, createPhrase } = usePhraseForm();
+
+  return (
+    <CreatePhraseForm
+      onSubmit={createPhrase}
+      error={error}
+      isLoading={loading}
+    />
+  );
+};

@@ -8,9 +8,9 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "@/components/ui/pagination";
+} from "@/app/components/ui/pagination";
 
-import { CreatePhraseFormContainer, PhrasesCardsContainer, PhrasesCardsFallback, PhrasesProvider } from "@/features/phrases";
+import { CreatePhraseFormContainer, PhrasesCardsContainer, PhrasesCardsFallback, PhrasesProvider } from "@/app/phrases";
 
 const Home: React.FC = () => {
   const Title = (
