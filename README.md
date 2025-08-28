@@ -45,18 +45,21 @@ Go to http://localhost:3000/ in a browser.
 ## Main directory structure
 
 ```
-./
-├─ app/                # Next.js app routes and pages
-├─ components/         # UI components used by the app
-│  └─ ui/
-├─ features/           # feature folders (phrases feature present)
-│  └─ phrases/
-├─ lib/                # shared library code / utils
-├─ src/                # source code
-├─ coverage/           # test coverage output
-├─ Dockerfile
-├─ docker-compose.yml
-└─ README.md
+├── coverage # Code coverage
+├── docker-compose.yml # Docker compose
+├── Dockerfile # Docker file
+├── .gitignore # Ignore files in Git commits
+├── README.md
+├── src
+│   ├── app
+│   │   ├── components # Components
+│   │   ├── layout.tsx # Main layout
+│   │   ├── lib # Util functions
+│   │   ├── page.tsx # Main page
+│   │   ├── phrases # Phrases page
+│   │   └── styles # CSS styles
+│   ├── package.json
+└── tmp # Temporal files from container
 ```
 
 ## Developer notes
