@@ -2,74 +2,61 @@
 
 Phrases app - Next.js + TypeScript project.
 
-## Quick collaborator start
-
-### Checklist
-- Clone the repo
-- Run with Docker Compose
-- Run tests
-
-### Local (not recommended)
-
-```bash
-# from project root
-pnpm install
-pnpm dev
-
-# run tests locally
-pnpm test
-```
+## Quick Start
 
 ### Docker Compose (recommended)
 
 ```bash
-docker compose build
-docker compose up
-```
+# root directory
+docker compose up --build
 
-### Run tests
-
-```bash
-# run inside container
+# run test script inside the container
 docker compose exec app sh
 pnpm test
 ```
-### App
 
-Go to http://localhost:3000/ in a browser.
+App runs at http://localhost:3000
+
+Code coverage at `/coverage/lcov-report/index.html`
+
+### Local (not recommended)
+
+```bash
+node -v # v22.18.0 or higher
+pnpm -v # 10.15.0 or higher
+
+cd ./src
+pnpm install
+pnpm dev
+
+# run tests with code coverage
+pnpm test
+```
+App runs at http://localhost:3000
+
+Code coverage at `src/coverage/lcov-report/index.html`
 
 ## Essentials
 - The repo is a Next.js app using TypeScript (see `app/`, `tsconfig.json`).
 - The package manager is pnpm.
 
-## Main directory structure
+## Structure
 
 ```
-├── coverage # Code coverage
-├── docker-compose.yml # Docker compose
-├── Dockerfile # Docker file
-├── .gitignore # Ignore files in Git commits
-├── README.md
-├── src
-│   ├── app
-│   │   ├── components # Components
-│   │   ├── layout.tsx # Main layout
-│   │   ├── lib # Util functions
-│   │   ├── page.tsx # Main page
-│   │   ├── phrases # Phrases page
-│   │   └── styles # CSS styles
-│   ├── package.json
-└── tmp # Temporal files from container
+src/app/
+├── components/     # Reusable UI components
+├── hooks/          # Custom React hooks
+├── phrases/        # Phrases feature
+│   ├── components/ # Feature components
+│   ├── hooks/      # Feature hooks
+│   ├── services/   # APIs
+│   ├── store/      # State management
+│   └── types/      # TypeScript types
+└── styles/         # Global styles
 ```
 
-## Developer notes
-- Tests use Jest. Coverage is available in `coverage/`.
-- TypeScript types are enabled; keep changes type-safe.
-- Keep Docker Compose as the canonical environment for CI parity.
+## Development
 
-## Contributing
-- Fork + branch from `develop` for features/bugfixes.
-- Open a pull request with a clear description and tests when applicable.
-
-## Contact / issues
-- Open an issue in this repository if something doesn't work or you need access.
+- **Testing**: Jest with coverage in `coverage/` or `src/coverage/`
+- **Types**: TypeScript strict mode enabled
+- **Environment**: Docker Compose for CI parity
