@@ -10,7 +10,7 @@ export function useSearch(onSearchChange: OnSearchChange, searchTermLength = 3):
         if (debouncedSearchTerm.length === 0 || debouncedSearchTerm.length >= searchTermLength) {
             onSearchChange(debouncedSearchTerm);
         }
-    }, [debouncedSearchTerm, onSearchChange]);
+    }, [debouncedSearchTerm, onSearchChange, searchTermLength]);
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(e.target.value);

@@ -40,7 +40,7 @@ export const PhrasesSearch: React.FC<PhrasesSearchProps> = ({
       </div>
       {trimmedSearchTerm && trimmedSearchTerm.length > searchTermLength && (
         <div className="mt-2 text-sm text-muted-foreground">
-          Buscando: "{searchTerm}"
+          Buscando: &quot;{searchTerm}&quot;
         </div>
       )}
     </div>

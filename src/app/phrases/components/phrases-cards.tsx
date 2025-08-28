@@ -48,6 +48,7 @@ export const PhraseCard: React.FC<PhraseCardProps> = React.memo(({
     </Card>
   );
 });
+PhraseCard.displayName = 'PhraseCard';
 
 interface PhrasesCardsProps {
   phrases: Phrase[];
@@ -67,7 +68,7 @@ export const PhrasesCards: React.FC<PhrasesCardsProps> = React.memo(({
       <div className="text-center py-8" role="status" aria-live="polite">
         <p className="text-muted-foreground">
           {searchTerm && searchTerm.length > SEARCH_TERM_LENGTH
-            ? `No se encontraron frases que coincidan con "${searchTerm}"`
+            ? `No se encontraron frases que coincidan con &quot;${searchTerm}&quot;`
             : "No hay frases aún. ¡Crea la primera!"}
         </p>
       </div>
@@ -91,6 +92,7 @@ export const PhrasesCards: React.FC<PhrasesCardsProps> = React.memo(({
     </div>
   );
 });
+PhrasesCards.displayName = 'PhrasesCards';
 
 export const PhrasesCardsFallback: React.FC = () => {
   return (
