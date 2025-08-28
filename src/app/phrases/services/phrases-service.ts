@@ -1,4 +1,4 @@
-import { Phrase } from "@/types/phrases";
+import { Phrase } from "@/app/phrases/types/phrases";
 
 export interface PhrasesServiceState {
   phrases: Phrase[];
@@ -31,7 +31,7 @@ export class PhrasesService {
   }
 
   // CRUD Operations
-  createPhrase(content: string): Phrase {
+  async createPhrase(content: string): Promise<Phrase> {
     this.validateContent(content);
     this.checkDuplicate(content);
 
@@ -44,7 +44,7 @@ export class PhrasesService {
     return newPhrase;
   }
 
-  deletePhrase(id: string): void {
+  async deletePhrase(id: string): Promise<void> {
     const existingPhrase = this.findPhraseById(id);
     if (!existingPhrase) {
       throw new Error("Frase no encontrada");
@@ -53,11 +53,11 @@ export class PhrasesService {
     this.phrases = this.phrases.filter((phrase) => phrase.id !== id);
   }
 
-  getPhraseById(id: string): Phrase | undefined {
+  async getPhraseById(id: string): Promise<Phrase | undefined> {
     return this.findPhraseById(id);
   }
 
-  getPhrases(searchTerm: string = ""): Phrase[] {
+  async getPhrases(searchTerm: string = ""): Promise<Phrase[]> {
     const _phrases = [...this.phrases];
 
     if (!searchTerm.trim()) {

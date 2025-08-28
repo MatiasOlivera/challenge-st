@@ -8,7 +8,7 @@ export { usePhrasesData, usePhraseForm, usePhrasesList } from './hooks/phrases-h
 
 // Services
 export { PhrasesProvider } from './store/phrases-context';
-export { phrasesService } from './store/phrases-service';
+export { phrasesService } from './services/phrases-service';
 
 // Types
 export type { Phrase } from './types/phrases';

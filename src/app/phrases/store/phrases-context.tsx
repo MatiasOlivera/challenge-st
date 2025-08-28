@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useReducer, ReactNode } from "react";
 import { Phrase } from "../types/phrases";
-import { phrasesService } from "./phrases-service";
+import { phrasesService } from "../services/phrases-service";
 
 interface PhrasesState {
   phrases: Phrase[];
@@ -22,8 +22,8 @@ export interface PhrasesContextType {
   state: PhrasesState;
   createPhrase: (content: string) => void;
   deletePhrase: (id: string) => void;
-  getPhrases: (searchTerm: string) => Phrase[];
-  getPhraseById: (id: string) => Phrase | undefined;
+  getPhrases: (searchTerm: string) => Promise<Phrase[]>;
+  getPhraseById: (id: string) => Promise<Phrase | undefined>;
 }
 
 const initialState: PhrasesState = {
@@ -79,11 +79,11 @@ export const PhrasesProvider: React.FC<PhrasesProviderProps> = ({
 }) => {
   const [state, dispatch] = useReducer(phrasesReducer, initialState);
 
-  const createPhrase = (content: string) => {
+  const createPhrase = async (content: string) => {
     try {
       dispatch({ type: "SET_LOADING", payload: true });
 
-      const newPhrase = phrasesService.createPhrase(content);
+      const newPhrase = await phrasesService.createPhrase(content);
       dispatch({ type: "ADD_PHRASE", payload: newPhrase });
     } catch (error) {
       dispatch({
@@ -96,11 +96,11 @@ export const PhrasesProvider: React.FC<PhrasesProviderProps> = ({
     }
   };
 
-  const deletePhrase = (id: string) => {
+  const deletePhrase = async (id: string) => {
     try {
       dispatch({ type: "SET_LOADING", payload: true });
 
-      phrasesService.deletePhrase(id);
+      await phrasesService.deletePhrase(id);
       dispatch({ type: "DELETE_PHRASE", payload: id });
     } catch (error) {
       dispatch({
@@ -113,12 +113,12 @@ export const PhrasesProvider: React.FC<PhrasesProviderProps> = ({
     }
   };
 
-  const getPhrases = (searchTerm = ""): Phrase[] => {
-    return phrasesService.getPhrases(searchTerm);
+  const getPhrases = async (searchTerm = ""): Promise<Phrase[]> => {
+    return await phrasesService.getPhrases(searchTerm);
   };
 
-  const getPhraseById = (id: string): Phrase | undefined => {
-    return phrasesService.getPhraseById(id);
+  const getPhraseById = async (id: string): Promise<Phrase | undefined> => {
+    return await phrasesService.getPhraseById(id);
   };
 
   const value: PhrasesContextType = {
