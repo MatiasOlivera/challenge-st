@@ -14,13 +14,13 @@ describe('PhrasesService', () => {
         expect(service.getPhrasesCount()).toBe(1);
     });
 
-    test('createPhrase throws on empty content', () => {
-        expect(async () => await service.createPhrase('   ')).toThrow('Debes escribir una frase');
+    test('createPhrase throws on empty content', async () => {
+        await expect(service.createPhrase('   ')).rejects.toThrow('Debes escribir una frase');
     });
 
     test('createPhrase throws on duplicate', async () => {
         await service.createPhrase('Hello world');
-        expect(async () => await service.createPhrase('Hello world')).toThrow('Ya existe una frase igual');
+        await expect(service.createPhrase('Hello world')).rejects.toThrow('Ya existe una frase igual');
     });
 
     test('deletePhrase removes existing phrase and throws when not found', async () => {
@@ -28,13 +28,13 @@ describe('PhrasesService', () => {
         expect(service.getPhrasesCount()).toBe(1);
         await service.deletePhrase(phrase.id);
         expect(service.getPhrasesCount()).toBe(0);
-        expect(async () => await service.deletePhrase(phrase.id)).toThrow('Frase no encontrada');
+        await expect(service.deletePhrase(phrase.id)).rejects.toThrow('Frase no encontrada');
     });
 
     test('getPhraseById returns phrase or undefined', async () => {
         const phrase = await service.createPhrase('find me');
-        expect(service.getPhraseById(phrase.id)).toEqual(phrase);
-        expect(service.getPhraseById('nope')).toBeUndefined();
+        await expect(service.getPhraseById(phrase.id)).resolves.toEqual(phrase);
+        await expect(service.getPhraseById('nope')).resolves.toBeUndefined();
     });
 
     test('getPhrases returns all or filters by searchTerm', async () => {
