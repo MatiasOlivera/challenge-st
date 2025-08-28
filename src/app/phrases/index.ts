@@ -7,8 +7,8 @@ export { PhrasesSearch } from './components/phrases-search';
 export { usePhrasesData, usePhraseForm, usePhrasesList } from './hooks/phrases-hooks';
 
 // Services
-export { PhrasesProvider } from './services/phrases-context';
-export { phrasesService } from './services/phrases-service';
+export { PhrasesProvider } from './store/phrases-context';
+export { phrasesService } from './store/phrases-service';
 
 // Types
 export type { Phrase } from './types/phrases';

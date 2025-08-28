@@ -1,4 +1,4 @@
-import { usePhrases } from "../services/phrases-context";
+import { usePhrases } from "../store/phrases-context";
 
 export function usePhrasesData() {
   const { state, createPhrase, deletePhrase } = usePhrases();
